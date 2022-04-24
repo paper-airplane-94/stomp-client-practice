@@ -14,7 +14,6 @@ import org.springframework.messaging.simp.stomp.StompSessionHandlerAdapter;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -48,15 +47,6 @@ public class TrendStompSessionHandler extends StompSessionHandlerAdapter {
     }
 
     public void response(TrendRequestDto requestDto) {
-        List<TrendDto> trends = trendCoreService.response(requestDto);
-        List<List<TrendDto>> partitions = Lists.partition(trends, 100);
-        for (List<TrendDto> partition : partitions) {
-            TrendResponseDto responseDto = TrendResponseDto.builder()
-                    .requestId(requestDto.getRequestId())
-                    .trends(partition)
-                    .build();
-            stompSession.ifPresent(sess -> sess.send("/app/trend", responseDto));
-        }
+        trendCoreService.response(requestDto, response -> stompSession.ifPresent(sess -> sess.send("/app/trend", response)));
     }
-
 }

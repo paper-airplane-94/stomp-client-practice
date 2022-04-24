@@ -1,10 +1,12 @@
 package com.samsung.fmcs.stompclient.repository;
 
+import com.samsung.fmcs.stompclient.entity.Trend;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Stream;
 
 @SpringBootTest
 class TrendRepositoryTest {
@@ -20,5 +22,13 @@ class TrendRepositoryTest {
         trendRepository.findAll()
                 .stream()
                 .forEach(System.out::println);
+    }
+
+    @Transactional(readOnly = true)
+    @Test
+    void 트렌드_스트림_조회() {
+        try(Stream<Trend> stream =trendRepository.streamAll()) {
+            stream.forEach(System.out::println);
+        }
     }
 }

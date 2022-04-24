@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Getter
 public class TrendRequestDto {
     private String requestId;
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime trndDate;
 
     @Builder

@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class TrendDto {
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime trndDate;
     private Integer eqpNo;
     private String paramCode;

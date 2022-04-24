@@ -5,17 +5,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class TrendResponseDto {
     private String requestId;
-    private List<TrendDto> trends;
+    private TrendDto trendDto;
 
     @Builder
-    public TrendResponseDto(String requestId, List<TrendDto> trends) {
+    public TrendResponseDto(String requestId, TrendDto trendDto) {
         this.requestId = requestId;
-        this.trends = trends;
+        this.trendDto = trendDto;
     }
 }
