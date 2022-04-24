@@ -1,0 +1,13 @@
+server:
+  port: 9091
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:BCMS
+    username: FMCS
+    password: DB-FMCS-0101
+  jpa:
+    show-sql: true
+    database: oracle
+    database-platform: org.hibernate.dialect.Oracle12cDialect
